@@ -2,7 +2,7 @@
 import { init } from "./firebase";
 
 
-const apiKey = "9a59f2d3d8074f0882ba9b5737ffa2b9";
+const apiKey = "your-api-key";
 const main = document.querySelector('main');
 const sourceSelector = document.querySelector('#sourceSelector')
 const defaultSource = 'buzzfeed';

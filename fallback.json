@@ -1,0 +1,10 @@
+{
+  "articles": [
+    {
+      "title": "Dog fails to fetch articles, finds ball",
+      "url": "",
+      "urlToImage": "https://media.giphy.com/media/klPeFHrWqzPDW/giphy.gif",
+      "description": "Try loading the page again when you're online."
+    }
+  ]
+}

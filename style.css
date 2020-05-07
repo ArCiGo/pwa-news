@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto Mono', monospace;
   font-weight: 300;
-  margin: 8px;
+  padding: 1em 3em;
 }
 
 h1 {
@@ -9,11 +10,24 @@ h1 {
   font-weight: 300;
 }
 
+.status {
+  background: #ef4e4e;
+  color: white;
+  font-weight: bolder;
+  padding: 7px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  font-size: 1em;
+  position: relative;
+}
+
+#results {
+  margin-top: 0;
 }
 
 main {
@@ -24,13 +38,92 @@ main {
   grid-auto-flow: row dense;
 }
 
+.select {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
-.article a,
-.article a:visited {
+select {
+  font-family: 'Roboto Mono', monospace;
+  border: .2em solid black;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  padding: 1em;
+}
+
+.select:after {
+  content: "\25BC";
+  display: block;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.search-bar {
+  flex-grow: .9;
+}
+
+.search-bar input {
+  width: 100%;
+  font-family: 'Roboto Mono', monospace;
+  border: .2em solid black;
+  font-size: 15px;
+  padding: 8px;
+}
+
+.search-bar input:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+/* select::after {
+  content: "\25BC";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+  height: 40px;
+  width: 40px;
+} */
+
+.article {
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+  box-shadow: 4px 6px 7px 1px rgba(0, 0, 0, 0.75);
+}
+
+.article-body {
+  padding: 1.25rem;
+}
+
+.article-title {
+  margin-bottom: .75rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.article a, .article a:visited {
   text-decoration: none;
   color: inherit;
 }
 
 .article img {
   width: 100%;
+  height: 13em;
 }

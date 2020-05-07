@@ -1,0 +1,27 @@
+{
+  "name": "pwa-news",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "http-server": "^0.12.3",
+    "jest": "^26.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresglzca/pwa-news.git"
+  },
+  "author": "Andres Glz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andresglzca/pwa-news/issues"
+  },
+  "homepage": "https://github.com/andresglzca/pwa-news#readme"
+}

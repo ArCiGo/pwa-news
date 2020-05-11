@@ -1,4 +1,4 @@
-const apiKey = "your-api-key";
+export const apiKey = "";
 const defaultSource = 'buzzfeed';
 const sourceSelector = document.querySelector('#sourceSelector');
 const inputSearch = document.querySelector('input[type="search"]');
@@ -32,10 +32,16 @@ window.addEventListener('load', e => {
   window.addEventListener('offline', newtworkStatus);
 });
 
-
-async function updateNewsSources() {
-  const response = await fetch(`https://newsapi.org/v2/sources?apiKey=${apiKey}`);
+export async function getJSON(url) {
+  const response = await fetch(url);
   const json = await response.json();
+  
+  return json;
+}
+
+export async function updateNewsSources() {
+  const json = await getJSON(`https://newsapi.org/v2/sources?apiKey=${apiKey}`);
+
   sourceSelector.innerHTML =
     json.sources
       .map(source => `<option value="${source.id}">${source.name}</option>`)
@@ -58,7 +64,7 @@ async function queryNews(query) {
   inputSearch.value = ""
 }
 
-function createArticle(article) {
+export function createArticle(article) {
   return `
       <div class="article" title="${article.title}">
         <a href="${article.url}">
@@ -74,14 +80,14 @@ function createArticle(article) {
       `;
 }
 
-function newtworkStatus() {
+export function newtworkStatus() {
   if (navigator.onLine) {
-    statusBar.innerHTML = ""
-    statusBar.style.display = "none"
+    // statusBar.innerHTML = ""
+    // statusBar.style.display = "none"
     console.log('online');
   } else {
-    statusBar.style.display = "block"
-    statusBar.innerHTML = "Estas Offline"
+    // statusBar.style.display = "block"
+    // statusBar.innerHTML = "Estas Offline"
     console.log('offline')
   }
 

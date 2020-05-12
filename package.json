@@ -12,7 +12,8 @@
     "@babel/preset-env": "^7.9.6",
     "babel-jest": "^26.0.1",
     "live-server": "^1.2.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0"
   },
   "scripts": {
     "test": "jest",

@@ -1,4 +1,4 @@
-export const apiKey = "";
+export const apiKey = "27d7e02fb0324ba5a1ed7f22e5b212ea";
 const defaultSource = 'buzzfeed';
 const sourceSelector = document.querySelector('#sourceSelector');
 const inputSearch = document.querySelector('input[type="search"]');
@@ -80,7 +80,7 @@ export function createArticle(article) {
       `;
 }
 
-export function newtworkStatus() {
+export function networkStatus() {
   if (navigator.onLine) {
     // statusBar.innerHTML = ""
     // statusBar.style.display = "none"

@@ -2,7 +2,7 @@ jest.mock('node-fetch');
 
 import { apiKey, createArticle, getJSON } from '../../../app.js';
 import fetch from 'node-fetch';
-const {Response} = jest.requireActual('node-fetch');
+const { Response } = jest.requireActual('node-fetch');
 
 const articleValues = {
     title: "Armando",

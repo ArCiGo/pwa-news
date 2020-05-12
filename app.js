@@ -26,10 +26,10 @@ window.addEventListener('load', e => {
     queryNews(e.target.value)
   })
 
-  newtworkStatus()
+  networkStatus()
 
-  window.addEventListener('online', newtworkStatus);
-  window.addEventListener('offline', newtworkStatus);
+  window.addEventListener('online', networkStatus);
+  window.addEventListener('offline', networkStatus);
 });
 
 export async function getJSON(url) {
@@ -48,17 +48,17 @@ export async function updateNewsSources() {
       .join('\n');
 }
 
-async function updateNews(source = defaultSource) {
+export async function updateNews(source = defaultSource) {
   newsArticles.innerHTML = '';
-  const response = await fetch(`https://newsapi.org/v2/top-headlines?sources=${source}&sortBy=top&apiKey=${apiKey}`);
-  const json = await response.json();
+  const json = await getJSON(`https://newsapi.org/v2/top-headlines?sources=${source}&sortBy=top&apiKey=${apiKey}`);
+  
   newsArticles.innerHTML = json.articles.map(createArticle).join('\n');
 }
 
-async function queryNews(query) {
+export async function queryNews(query) {
   newsArticles.innerHTML = '';
-  const response = await fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`);
-  const json = await response.json();
+  const json = await getJSON(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`);
+  
   newsArticles.innerHTML = json.articles.map(createArticle).join('\n');
   document.getElementById('results').innerHTML = `Se encontraron <strong>${Object.keys(json.articles).length}</strong> resultados de <strong>"${query}"</strong>. `;
   inputSearch.value = ""
@@ -80,15 +80,18 @@ export function createArticle(article) {
       `;
 }
 
-export function networkStatus() {
+export function networkStatus(sb) {
+  sb = sb || statusBar;
+
   if (navigator.onLine) {
-    // statusBar.innerHTML = ""
-    // statusBar.style.display = "none"
+    sb.innerHTML = ""
+    sb.style.display = "none"
+    
     console.log('online');
   } else {
-    // statusBar.style.display = "block"
-    // statusBar.innerHTML = "Estas Offline"
+    sb.style.display = "block"
+    sb.innerHTML = "Estas Offline"
+    
     console.log('offline')
   }
-
 }

@@ -42,7 +42,7 @@ export async function getJSON(url) {
 export async function updateNewsSources() {
   const json = await getJSON(`https://newsapi.org/v2/sources?apiKey=${apiKey}`);
 
-  sourceSelector.innerHTML =
+  document.querySelector('#sourceSelector').innerHTML =
     json.sources
       .map(source => `<option value="${source.id}">${source.name}</option>`)
       .join('\n');

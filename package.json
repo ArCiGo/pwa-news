@@ -15,11 +15,13 @@
     "node-fetch": "^2.6.0",
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "@testing-library/dom": "^7.2.1",
-    "@testing-library/jest-dom": "^5.5.0"
+    "@testing-library/jest-dom": "^5.5.0",
+    "cypress": "^4.5.0"
   },
   "scripts": {
     "test": "jest",
-    "dev": "live-server"
+    "dev": "live-server",
+    "cypress:open": "cypress open"
   },
   "jest": {
     "collectCoverage": true,

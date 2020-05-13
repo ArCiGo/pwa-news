@@ -12,6 +12,10 @@ const articleValues = {
 };
 
 describe('app.js', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+
   describe('when `createArticle()` is called', () => {
   it('should return the correct values of the given object', () => {
       expect(createArticle(articleValues)).toContain(articleValues.title);
@@ -41,10 +45,6 @@ describe('app.js', () => {
   });
 
   describe('when `networkStatus` is called', () => {
-    beforeEach(() => {
-        jest.restoreAllMocks();
-    });
-
   it('should display `""` when online', () => {      
       document.body.innerHTML = `<div id="statusBar" class="status"></div>`;
 
@@ -75,5 +75,30 @@ describe('app.js', () => {
       
       expect(logSpy).toBeCalledWith('offline');
     });
-  })
+  });
+
+  describe('when `updateNewsSources()` is called', () => {
+    // beforeEach(() => {
+    //     jest.restoreAllMocks();
+    // });
+
+  it('should populate something', async () => {
+      global.fetch = fetch;
+      
+      const response = JSON.stringify({sources: [{id: '1', name: "test"}]});
+
+      fetch.mockReturnValue(Promise.resolve(new Response(response)));
+
+      document.body.innerHTML = `
+      <div class="select">
+        <select id="sourceSelector"></select>
+      </div>
+      `;
+      
+      const url = await updateNewsSources();
+      
+      expect(fetch).toHaveBeenCalledTimes(1);
+      expect(document.getElementById('sourceSelector').innerHTML).toBe('<option value="1">test</option>');
+    });
+  });
 });

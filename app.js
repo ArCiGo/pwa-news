@@ -1,18 +1,10 @@
-export const apiKey = "27d7e02fb0324ba5a1ed7f22e5b212ea";
+const apiKey = "27d7e02fb0324ba5a1ed7f22e5b212ea";
 const defaultSource = 'buzzfeed';
 const sourceSelector = document.querySelector('#sourceSelector');
 const inputSearch = document.querySelector('input[type="search"]');
 const newsArticles = document.querySelector('main');
 const statusBar = document.querySelector('.status');
 const imgNotFound = "https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big.png";
-
-
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () =>
-//     navigator.serviceWorker.register('sw.js')
-//       .then(registration => console.log('Service Worker registered'))
-//       .catch(err => 'SW registration failed'));
-// }
 
 window.addEventListener('load', e => {
 
@@ -32,14 +24,14 @@ window.addEventListener('load', e => {
   window.addEventListener('offline', networkStatus);
 });
 
-export async function getJSON(url) {
+async function getJSON(url) {
   const response = await fetch(url);
   const json = await response.json();
   
   return json;
 }
 
-export async function updateNewsSources() {
+async function updateNewsSources() {
   const json = await getJSON(`https://newsapi.org/v2/sources?apiKey=${apiKey}`);
 
   document.querySelector('#sourceSelector').innerHTML =
@@ -48,23 +40,23 @@ export async function updateNewsSources() {
       .join('\n');
 }
 
-export async function updateNews(source = defaultSource) {
-  newsArticles.innerHTML = '';
+async function updateNews(source = defaultSource) {
+  document.querySelector('main').innerHTML = '';
   const json = await getJSON(`https://newsapi.org/v2/top-headlines?sources=${source}&sortBy=top&apiKey=${apiKey}`);
   
-  newsArticles.innerHTML = json.articles.map(createArticle).join('\n');
+  document.querySelector('main').innerHTML = json.articles.map(createArticle).join('\n');
 }
 
-export async function queryNews(query) {
-  newsArticles.innerHTML = '';
+async function queryNews(query) {
+  document.querySelector('main').innerHTML = '';
   const json = await getJSON(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`);
   
-  newsArticles.innerHTML = json.articles.map(createArticle).join('\n');
+  document.querySelector('main').innerHTML = json.articles.map(createArticle).join('\n');
   document.getElementById('results').innerHTML = `Se encontraron <strong>${Object.keys(json.articles).length}</strong> resultados de <strong>"${query}"</strong>. `;
-  inputSearch.value = ""
+  document.querySelector('input[type="search"]').value = ""
 }
 
-export function createArticle(article) {
+function createArticle(article) {
   return `
       <div class="article" title="${article.title}">
         <a href="${article.url}">
@@ -80,7 +72,7 @@ export function createArticle(article) {
       `;
 }
 
-export function networkStatus(sb) {
+function networkStatus(sb) {
   sb = sb || statusBar;
 
   if (navigator.onLine) {
@@ -94,4 +86,14 @@ export function networkStatus(sb) {
     
     console.log('offline')
   }
+}
+
+export {
+  apiKey,
+  getJSON,
+  updateNewsSources,
+  updateNews,
+  queryNews,
+  createArticle,
+  networkStatus
 }

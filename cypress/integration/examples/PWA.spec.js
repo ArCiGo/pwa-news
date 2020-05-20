@@ -21,5 +21,18 @@ describe('News PWA', () => {
         cy.get('#sourceSelector').should('exist');
         cy.get('#sourceSelector').select('ANSA.it')
         cy.get('main').find('.article').should('have.length', 10)
-    })
+    });
+
+    it('should render results', () => {
+        const search = "México";
+        const resultsText = "Se encontraron 20 resultados de \"" + search + "\".";
+
+        cy.get('#search').should('exist');
+        cy.get('#search').clear().type(search+'{enter}')
+          .trigger('search');
+
+        cy.get('#results').should('exist');
+        cy.get('#results').contains(resultsText);
+        cy.get('main').find('.article').should('have.length', 20);
+      });
 });

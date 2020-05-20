@@ -118,6 +118,6 @@ describe('app.js', () => {
       await queryNews('buzzfeed');
       
       expect(fetch).toHaveBeenCalledTimes(1);
-    })
-  })
+    });
+  });
 });

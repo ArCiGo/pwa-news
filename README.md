@@ -1,5 +1,7 @@
 # pwa-news
 
+sample app: https://news-6b559.web.app/
+
 This a simple PWA example using vainilla Javascript and http://newsapi.org/.
 
 # Setup
